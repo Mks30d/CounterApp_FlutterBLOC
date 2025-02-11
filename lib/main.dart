@@ -1,6 +1,8 @@
 import 'package:counter_app_flutter_bloc/bloc/counter/counter_bloc.dart';
+import 'package:counter_app_flutter_bloc/bloc/switch/switch_bloc.dart';
 import 'package:counter_app_flutter_bloc/equatableTut.dart';
-import 'package:counter_app_flutter_bloc/ui/counter_screen.dart';
+import 'package:counter_app_flutter_bloc/ui/counter/counter_screen.dart';
+import 'package:counter_app_flutter_bloc/ui/switch/switch_example.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,14 +15,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) {  // created the bloc and every child widget can access bloc variables
-        return CounterBloc();
-      },
+    return MultiBlocProvider(
+      providers: [
+        // created the bloc and every child widget can access bloc variables
+        BlocProvider(create: (context) => CounterBloc(),),
+        BlocProvider(create: (context) => SwitchBloc(),),
+      ],
       child: const MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
-        home: CounterScreen(),
+        home: SwitchExample(),
       ),
     );
   }
