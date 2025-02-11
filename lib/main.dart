@@ -3,6 +3,7 @@ import 'package:counter_app_flutter_bloc/bloc/switch/switch_bloc.dart';
 import 'package:counter_app_flutter_bloc/equatableTut.dart';
 import 'package:counter_app_flutter_bloc/ui/counter/counter_screen.dart';
 import 'package:counter_app_flutter_bloc/ui/switch/switch_example.dart';
+import 'package:counter_app_flutter_bloc/ui/todo_screen/ToDoScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,9 +23,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => SwitchBloc(),),
       ],
       child: const MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Flutter BLoc',
         debugShowCheckedModeBanner: false,
-        home: SwitchExample(),
+        // home: SwitchExample(),
+        home: ToDoScreen(),
       ),
     );
   }
