@@ -7,6 +7,12 @@ class TodoState extends Equatable {
     this.todoList = const []
   });
 
+  TodoState copyWith({List<String>? todoList}) {
+    return TodoState(
+      todoList: todoList??this.todoList
+    );
+  }
+
   @override
   List<Object?> get props => [todoList];
 }
