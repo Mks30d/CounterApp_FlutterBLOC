@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../bloc/todo_app/todo_bloc.dart';
 import '../../bloc/todo_app/todo_state.dart';
 
+// #8 Flutter Bloc Insert & Delete Data from List
+
 class ToDoApp extends StatefulWidget {
   const ToDoApp({super.key});
 
@@ -13,6 +15,7 @@ class ToDoApp extends StatefulWidget {
 }
 
 class _ToDoAppState extends State<ToDoApp> {
+  int count =1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,11 +32,13 @@ class _ToDoAppState extends State<ToDoApp> {
               itemCount: state.todoList.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text((index + 1).toString()),
-                  // title: Text(state.todoList[index]),
+                  // title: Text((index + 1).toString()),
+                  title: Text(state.todoList[index]),
                   trailing: IconButton(
                     icon: Icon(Icons.delete),
-                    onPressed: () {},
+                    onPressed: () {
+                      context.read<TodoBloc>().add(RemoveTodoEvent(task: state.todoList[index]));
+                    },
                   ),
                 );
               },
@@ -45,7 +50,8 @@ class _ToDoAppState extends State<ToDoApp> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-            context.read<TodoBloc>().add(AddTodoEvent(task: "Task: "));
+            context.read<TodoBloc>().add(AddTodoEvent(task: "Task: $count"));
+            count++;
           // for (int i = 1; i <= 5; i++) {
           //   // to add task in list when button is clicked
           //   context.read<TodoBloc>().add(AddTodoEvent(task: "Task: " + i.toString()));

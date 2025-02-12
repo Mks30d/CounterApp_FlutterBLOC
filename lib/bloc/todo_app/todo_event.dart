@@ -13,6 +13,10 @@ class AddTodoEvent extends TodoEvent {
 }
 
 class RemoveTodoEvent extends TodoEvent {
+
+  final Object task;
+  RemoveTodoEvent({required this.task});
+
   @override
   List<Object?> get props => [];
 }
